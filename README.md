@@ -19,3 +19,4 @@ Os principais campos são:
 
 ### Comandos
 - `py manage.py createsuperuser` -> Cria o usuário root da aplicação
+- `py manage.py runserver` -> Inicializa o servidor
