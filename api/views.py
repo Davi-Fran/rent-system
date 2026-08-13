@@ -1,8 +1,4 @@
-from django.shortcuts import render
-from django.contrib.auth.hashers import make_password
-
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -170,7 +166,6 @@ class PaymentsRouteAPIView(APIView):
             return Response(newPayment.data, status=status.HTTP_201_CREATED)
 
         return Response(newPayment.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class PaymentsDetailAPIView(APIView):
     def get_payment(self, pk):
