@@ -8,5 +8,7 @@ urlpatterns = [
     path("propertys", PropertysRouteAPIView.as_view()),
     path("propertys/<int:pk>", PropertysDetailAPIView.as_view()),
     path("agreements", AgreementsRouteAPIView.as_view()),
-    path("agreements/<int:pk>", AgreementsDetailAPIView.as_view())
+    path("agreements/<int:pk>", AgreementsDetailAPIView.as_view()),
+    path("payments", PaymentsRouteAPIView.as_view()),
+    path("payments/<int:pk>", PaymentsDetailAPIView.as_view())
 ]

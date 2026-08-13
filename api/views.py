@@ -154,3 +154,47 @@ class AgreementsDetailAPIView(APIView):
 
 
 # CRUD Pagamentos
+class PaymentsRouteAPIView(APIView):
+    def get(self, request):
+        payments = Payment.objects.all()
+        serializer = PaymentSerializer(payments, many=True)
+
+        return Response(serializer.data)
+
+    def post(self, request):
+        newPayment = PaymentSerializer(data=request.data)
+
+        if newPayment.is_valid():
+            newPayment.save()
+
+            return Response(newPayment.data, status=status.HTTP_201_CREATED)
+
+        return Response(newPayment.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PaymentsDetailAPIView(APIView):
+    def get_payment(self, pk):
+        return Payment.objects.get(pk=pk)
+
+    def get(self, request, pk):
+        payment = self.get_payment(pk)
+        serializer = PaymentSerializer(payment)
+
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        payment = self.get_payment(pk)
+        serializer = PaymentSerializer(payment, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        payment = self.get_payment(pk)
+        payment.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
