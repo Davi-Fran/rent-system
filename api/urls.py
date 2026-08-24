@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .views_api_view import (
+from .test_views.views_api_view import (
     UsersRouteAPIView,
     UsersDetailAPIView,
     PropertysRouteAPIView,
@@ -15,7 +15,7 @@ from .views_api_view import (
     PaymentsDetailAPIView
 )
 
-from .views_generics import (
+from .test_views.views_generics import (
     UserListCreateGeneric,
     UserRetrieveUpdateDestroyGeneric,
     PropertyListCreateGeneric,
@@ -26,7 +26,7 @@ from .views_generics import (
     PaymentRetrieveUpdateDestroyGeneric
 )
 
-from .views_viewset import (
+from .views import (
     UserViewSet,
     PropertyViewSet,
     AgreementViewSet,
@@ -55,9 +55,6 @@ urlpatterns = [
     
     path("apiview/payments", PaymentsRouteAPIView.as_view()),
     path("apiview/payments/<int:pk>", PaymentsDetailAPIView.as_view()),
-    
-    path("apiview/token", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("apiview/token/refresh", TokenRefreshView.as_view(), name="token_refresh"),
 
 
     # -----------------------
@@ -74,13 +71,17 @@ urlpatterns = [
     
     path("generics/payments", PaymentListCreateGeneric.as_view()),
     path("generics/payments/<int:pk>", PaymentRetrieveUpdateDestroyGeneric.as_view()),
-    
-    path("generics/token", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("generics/token/refresh", TokenRefreshView.as_view(), name="token_refresh"),
 
 
     # -----------------------
     # ModelViewSet
     # -----------------------
-    path('viewset/', include(router.urls))
+    path("viewset/", include(router.urls)),
+
+
+    # -----------------------
+    # Token Routes
+    # -----------------------
+    path("token", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh", TokenRefreshView.as_view(), name="token_refresh")
 ]

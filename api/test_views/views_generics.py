@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from .models import *
-from .serializers import *
+from ..models import *
+from ..serializers import *
 
 
 # CRUD Usuário
