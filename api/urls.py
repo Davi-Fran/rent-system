@@ -4,6 +4,8 @@ from rest_framework.routers import DefaultRouter
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from .import_sheet import ImportUsers
+
 from .test_views.views_api_view import (
     UsersRouteAPIView,
     UsersDetailAPIView,
@@ -77,6 +79,9 @@ urlpatterns = [
     # ModelViewSet
     # -----------------------
     path("viewset/", include(router.urls)),
+
+
+    path("teste", ImportUsers.as_view()),
 
 
     # -----------------------
