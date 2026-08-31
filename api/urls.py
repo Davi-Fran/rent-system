@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .import_sheet import ImportUsers
+from .import_sheet import ImportUsers, ImportPropertys, ImportAgreements, ImportPayments
 
 from .test_views.views_api_view import (
     UsersRouteAPIView,
@@ -81,7 +81,10 @@ urlpatterns = [
     path("viewset/", include(router.urls)),
 
 
-    path("teste", ImportUsers.as_view()),
+    path("import_users", ImportUsers.as_view()),
+    path("import_propertys", ImportPropertys.as_view()),
+    path("import_agreements", ImportAgreements.as_view()),
+    path("import_payments", ImportPayments.as_view()),
 
 
     # -----------------------
